@@ -1,0 +1,23 @@
+{
+	"name": "Sultan",
+	"short_name": "Sultan",
+	"description": "",
+	"lang": "ru-RU",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff",
+	"icons": [
+		{
+			"src": "/suli.jpg",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "/suli.jpg",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
