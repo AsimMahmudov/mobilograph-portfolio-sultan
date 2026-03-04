@@ -1,14 +1,14 @@
 export const IS_CLIENT = typeof window !== 'undefined'
 export const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-export const FRONT_VERCEL = ''
+export const TWIN_CORE = 'https://twin-core-ui.vercel.app/'
 
-export const PHONE_NUMBER = '+996 708 771 849'
+export const PHONE_NUMBER = '+971528104732'
 
 export const WHATSAPP_NUMBER = PHONE_NUMBER
 
-export const EMAIL_ADDRESS = 'mahmudovasim799@gmail.com'
-export const INSTAGRAM = 'callme_suli_/'
+export const EMAIL_ADDRESS = 'sultamuktarbekov754@gmail.com'
+export const INSTAGRAM = 'lli.visuals'
 export const LOCATION = ''
 
 export const GITHUB = 'AsimMahmudov'

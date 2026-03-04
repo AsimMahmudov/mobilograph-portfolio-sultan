@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import Image from "next/image";
-import ava from "@/assets/images/suli.jpg";
+import ava from "@/assets/images/sultan_new.jpg";
 import Link from "next/link";
 import { INSTAGRAM_LINK } from "@/constants/admin";
 
@@ -40,7 +40,7 @@ const SkillItem = ({
 			viewport={{ once: true, margin: "-100px" }}
 			className="group flex gap-8 md:gap-12 items-start relative">
 			<div className="relative flex-shrink-0 mt-1">
-				<span className="relative z-10 font-mono text-blue-500 text-xs flex items-center justify-center w-10 h-10 transition-colors duration-500 group-hover:text-white">
+				<span className="relative z-10 font-mono text-[red] text-xs flex items-center justify-center w-10 h-10 transition-colors duration-500 group-hover:text-white">
 					{item.num}
 				</span>
 
@@ -61,7 +61,7 @@ const SkillItem = ({
 						stroke="currentColor"
 						strokeWidth="2"
 						fill="transparent"
-						className="text-blue-500"
+						className="text-[red]"
 						initial={{ pathLength: 0 }}
 						whileInView={{ pathLength: 1 }}
 						viewport={{ once: false, margin: "-30% 0px -30% 0px" }}
@@ -70,7 +70,7 @@ const SkillItem = ({
 				</svg>
 
 				{index !== skills.length - 1 && (
-					<div className="absolute top-10 left-[19px] w-[1px] h-40 bg-gradient-to-b from-blue-500/30 to-transparent" />
+					<div className="absolute top-10 left-[19px] w-[1px] h-40 bg-gradient-to-b from-red-500/30 to-transparent" />
 				)}
 			</div>
 
@@ -78,7 +78,7 @@ const SkillItem = ({
 				{" "}
 				<motion.h4
 					className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-4 transition-colors duration-500"
-					whileInView={{ color: "#3b82f6" }}
+					whileInView={{ color: "red" }}
 					viewport={{ once: false, margin: "-30% 0px -30% 0px" }}>
 					{item.title}
 				</motion.h4>
@@ -119,12 +119,12 @@ const About = () => {
 								className="object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s]"
 							/>
 
-							<div className="absolute bottom-0 right-0 bg-blue-600 p-6 md:p-10 z-20">
-								<p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-1 text-blue-200 opacity-70">
+							<div className="absolute bottom-0 right-0 bg-[red] p-6 md:p-6 z-20">
+								<p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-1 text-red-200 opacity-70">
 									Equipment
 								</p>
 								<h4 className="text-lg md:text-xl font-black uppercase italic leading-none text-white">
-									iPhone 16 Pro
+									SONY A7 M4 (full frame) <br /> IPHONE 17 PRO
 								</h4>
 							</div>
 						</motion.div>
@@ -162,7 +162,7 @@ const About = () => {
 						<Link href={INSTAGRAM_LINK} target={"_blank"}>
 							<motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
 								<div className="flex items-center gap-6 group cursor-pointer">
-									<div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-blue-600 group-hover:border-blue-600 transition-all duration-500">
+									<div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[red] group-hover:border-[red] transition-all duration-500">
 										<FiArrowUpRight size={28} />
 									</div>
 									<span className="text-xl font-black uppercase tracking-widest italic">

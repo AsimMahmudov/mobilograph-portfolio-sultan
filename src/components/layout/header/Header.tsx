@@ -49,7 +49,7 @@ const Header = () => {
 							}`}
 						/>
 					</motion.div>
-					<div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+					<div className="absolute inset-0 bg-[red] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
 				</button>
 			</header>
 
@@ -94,10 +94,10 @@ const Header = () => {
 											href={item.href}
 											onClick={() => setIsOpen(false)}
 											className="group flex items-baseline gap-6 text-5xl md:text-7xl font-black uppercase italic tracking-tighter leading-none transition-all hover:pl-8">
-											<span className="text-sm md:text-xl font-mono text-blue-500 not-italic">
+											<span className="text-sm md:text-xl font-mono text-[red] not-italic">
 												0 {i + 1} .
 											</span>
-											<span className="text-white group-hover:text-blue-500 transition-colors">
+											<span className="text-white group-hover:text-[red] transition-colors">
 												{item.name}
 											</span>
 										</a>

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		siteName: SITE_NAME,
 		images: [
 			{
-				url: "/suli.jpg",
+				url: "/sultan_new.jpg",
 				alt: SITE_NAME,
 			},
 		],

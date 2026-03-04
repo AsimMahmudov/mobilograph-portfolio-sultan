@@ -65,7 +65,7 @@ const Hero = () => {
 
 			<div className="relative z-10 flex justify-between items-start">
 				<div className="font-black text-2xl tracking-tighter uppercase italic">
-					Directed <span className="text-blue-500">Suli</span>
+					Directed <span className="text-[red]">Suli</span>
 				</div>
 			</div>
 
@@ -93,7 +93,7 @@ const Hero = () => {
 											? "1px white"
 											: "1px rgba(255,255,255,0.1)",
 										textShadow: isActive
-											? "0 0 40px rgba(59,130,246,0.3)"
+											? "0 0 40px red"
 											: "none",
 									}}>
 									{item.text}
@@ -102,7 +102,7 @@ const Hero = () => {
 								{isActive && (
 									<motion.div
 										layoutId="underline"
-										className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full"
+										className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-4 bg-[red] rounded-full"
 										initial={{ scale: 0 }}
 										animate={{ scale: 1 }}
 									/>
@@ -137,7 +137,7 @@ const Hero = () => {
 								Let's Shoot
 								<FiArrowUpRight className="group-hover:rotate-45 transition-transform" />
 							</span>
-							<motion.div className="absolute inset-0 bg-blue-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+							<motion.div className="absolute inset-0 bg-[red] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
 						</button>
 					</Link>
 
