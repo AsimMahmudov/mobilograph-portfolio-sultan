@@ -108,7 +108,9 @@ const About = () => {
 			<div className="max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
 					<div className="lg:col-span-5 md:sticky relative md:top-24 top-0">
-						<motion.div className="relative aspect-[3/4] overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-1000 group shadow-2xl">
+						<motion.div
+							/* Заменил grayscale на md:grayscale */
+							className="relative aspect-[3/4] overflow-hidden rounded-sm md:grayscale hover:grayscale-0 transition-all duration-1000 group shadow-2xl">
 							<Image
 								src={ava}
 								alt="Director Portrait"
