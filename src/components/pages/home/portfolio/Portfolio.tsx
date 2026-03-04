@@ -1,63 +1,35 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { FiArrowUpRight, FiPlus } from "react-icons/fi";
+import {
+	motion,
+	useScroll,
+	useTransform,
+	AnimatePresence,
+} from "framer-motion";
+import { FiArrowUpRight, FiPlay, FiX } from "react-icons/fi";
 
 const projects = [
 	{
 		id: 1,
-		title: "Night City",
-		cat: "Lifestyle",
-		img: "https://images.unsplash.com/photo-1477332552946-cfb384aeaf1c?q=80&w=1000",
+		title: "Kyrgyz Boxing 🥊",
+		video: "/video.mp4",
+		cat: "Motion Design",
+		link: "https://www.instagram.com/reel/DSCnlsgjYq9/",
 	},
 	{
 		id: 2,
-		title: "Vogue Edit",
-		cat: "Fashion",
-		img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000",
+		title: "Kyrgyz Boxing 🥊",
+		video: "/video2.mp4",
+		cat: "Motion Design",
+		link: "https://www.instagram.com/reel/DSCnlsgjYq9/",
 	},
 	{
 		id: 3,
-		title: "Cyber Punk",
-		cat: "Creative",
-		img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000",
-	},
-	{
-		id: 4,
-		title: "Night City",
-		cat: "Lifestyle",
-		img: "https://images.unsplash.com/photo-1477332552946-cfb384aeaf1c?q=80&w=1000",
-	},
-	{
-		id: 5,
-		title: "Vogue Edit",
-		cat: "Fashion",
-		img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000",
-	},
-	{
-		id: 6,
-		title: "Cyber Punk",
-		cat: "Creative",
-		img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000",
-	},
-	{
-		id: 7,
-		title: "Night City",
-		cat: "Lifestyle",
-		img: "https://images.unsplash.com/photo-1477332552946-cfb384aeaf1c?q=80&w=1000",
-	},
-	{
-		id: 8,
-		title: "Vogue Edit",
-		cat: "Fashion",
-		img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000",
-	},
-	{
-		id: 9,
-		title: "Cyber Punk",
-		cat: "Creative",
-		img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000",
+		title: "Kyrgyz Boxing 🥊",
+		video: "/video3.mp4",
+		cat: "Motion Design",
+		link: "https://www.instagram.com/reel/DSCnlsgjYq9/",
 	},
 ];
 
@@ -65,27 +37,27 @@ const Portfolio = () => {
 	const targetRef = useRef<HTMLDivElement>(null);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [scrollRange, setScrollRange] = useState(0);
+	const [playingId, setPlayingId] = useState<number | null>(null);
 
-	// Считаем реальную ширину всей ленты при загрузке
 	useEffect(() => {
-		if (scrollRef.current) {
-			// Ширина всей ленты минус ширина экрана = расстояние, которое нужно проехать
-			setScrollRange(scrollRef.current.scrollWidth - window.innerWidth);
-		}
+		const updateScrollRange = () => {
+			if (scrollRef.current) {
+				setScrollRange(scrollRef.current.scrollWidth - window.innerWidth);
+			}
+		};
+		updateScrollRange();
+		window.addEventListener("resize", updateScrollRange);
+		return () => window.removeEventListener("resize", updateScrollRange);
 	}, []);
 
-	const { scrollYProgress } = useScroll({
-		target: targetRef,
-	});
-
-	// Теперь x двигается ровно на ширину ленты: от 0 до -scrollRange
+	const { scrollYProgress } = useScroll({ target: targetRef });
 	const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
 	return (
-		<section ref={targetRef} className="relative h-[400vh] bg-[#030303]">
+		<section id="portfolio" ref={targetRef} className="relative h-[400vh] bg-[#030303]">
 			<div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-				{/* HEADER */}
-				<div className="px-6 md:px-12 mb-8 flex justify-between items-end w-full max-w-7xl mx-auto lg:mx-0">
+			 
+				<div className="px-6 md:px-12 mb-8 flex justify-between items-end w-full max-w-7xl mx-auto lg:mx-0 z-20">
 					<div className="relative">
 						<span className="text-blue-500 font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">
 							Archive
@@ -94,64 +66,107 @@ const Portfolio = () => {
 							Selected
 						</h2>
 					</div>
-					<div className="hidden md:block text-right">
-						<p className="text-zinc-500 font-mono text-[9px] uppercase tracking-widest leading-loose">
-							Scroll down to explore <br /> / {projects.length} case studies
-						</p>
+					<div className="hidden md:block text-right text-zinc-500 font-mono text-[9px] uppercase tracking-widest leading-loose">
+						{playingId ? "Now Playing" : "Tap to play with sound"} /{" "}
+						{projects.length}
 					</div>
 				</div>
 
-				{/* ГОРИЗОНТАЛЬНАЯ ЛЕНТА */}
+			 
 				<motion.div
 					ref={scrollRef}
 					style={{ x }}
-					className="flex gap-4 md:gap-8 px-6 md:px-12">
-					{projects.map((project) => (
-						<div
-							key={project.id}
-							className="group relative h-[55vh] md:h-[60vh] w-[85vw] md:w-[35vw] flex-shrink-0 overflow-hidden rounded-sm bg-zinc-900 border border-white/5">
-							{/* IMAGE */}
-							<img
-								src={project.img}
-								alt={project.title}
-								className="h-full w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-							/>
+					className="flex gap-4 md:gap-8 px-6 md:px-12 z-10">
+					{projects.map((project) => {
+						const isActive = playingId === project.id;
 
-							{/* CONTENT OVERLAY */}
-							<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-
-							<div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10">
-								<div className="flex items-center gap-2 mb-3">
-									<div className="w-4 h-[1px] bg-blue-500" />
-									<span className="text-blue-500 font-mono text-[10px] uppercase tracking-widest">
-										{project.cat}
-									</span>
+						return (
+							<div
+								key={project.id}
+								className={`group relative h-[60vh] md:h-[65vh] transition-all duration-700 ease-out flex-shrink-0 overflow-hidden rounded-sm bg-zinc-900 border border-white/5 
+                  ${
+										isActive
+											? "w-[85vw] md:w-[35vw] z-10"
+											: "w-[85vw] md:w-[35vw] z-10"
+									}`}>
+							 
+								<div className="absolute inset-0">
+									<video
+										src={project.video}
+										autoPlay
+										loop
+										playsInline
+										muted={!isActive}  
+										controls={isActive}  
+										className={`h-full w-full object-cover transition-all duration-1000 
+                      ${
+												isActive
+													? "grayscale-0 scale-100"
+													: "grayscale group-hover:grayscale-0 group-hover:scale-105"
+											}`}
+									/>
 								</div>
-								<h3 className="text-3xl md:text-5xl text-white font-black uppercase italic tracking-tighter mb-6">
-									{project.title}
-								</h3>
+ 
+								<AnimatePresence>
+									{!isActive && (
+										<motion.div
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											onClick={() => setPlayingId(project.id)}
+											className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent cursor-pointer z-10">
+											 
+											<div className="absolute inset-0 flex items-center justify-center">
+												<div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-500">
+													<FiPlay fill="white" size={24} />
+												</div>
+											</div>
+ 
+											<div className="absolute bottom-8 left-8 right-8">
+												<div className="flex items-center gap-2 mb-3">
+													<div className="w-4 h-[1px] bg-blue-500" />
+													<span className="text-blue-500 font-mono text-[10px] uppercase tracking-widest">
+														{project.cat}
+													</span>
+												</div>
+												<h3 className="text-3xl md:text-5xl text-white font-black uppercase italic tracking-tighter">
+													{project.title}
+												</h3>
+											</div>
+										</motion.div>
+									)}
+								</AnimatePresence>
 
-								<div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">
-									<span>View Details</span>
-									<FiArrowUpRight className="group-hover:rotate-45 transition-transform" />
-								</div>
+							 
+								{isActive && (
+									<button
+										onClick={() => setPlayingId(null)}
+										className="absolute top-6 left-6 z-30 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white border border-white/10">
+										<FiX size={20} />
+									</button>
+								)}
+
+								 
+								<a
+									href={project.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									className={`absolute top-6 right-6 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all duration-500
+                    ${
+											isActive
+												? "bg-blue-600 border-none"
+												: "hover:bg-white hover:text-black"
+										}`}>
+									<FiArrowUpRight className="text-xl" />
+								</a>
 							</div>
-
-							{/* FLOATING ICON */}
-							<div className="absolute top-6 right-6 md:top-10 md:right-10 opacity-0 group-hover:opacity-100 transition-opacity">
-								<div className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-center">
-									<FiPlus className="text-xl" />
-								</div>
-							</div>
-						</div>
-					))}
-
-					{/* Дополнительный отступ в конце, чтобы последняя карточка не прилипала к краю */}
+						);
+					})}
 					<div className="w-[10vw] flex-shrink-0" />
 				</motion.div>
 
-				{/* BACKGROUND DECOR */}
-				<div className="absolute md:bottom-[-30px] bottom-[100px] left-12 text-[15vw] font-black text-white/[0.01] pointer-events-none select-none uppercase italic leading-none">
+				 
+				<div className="absolute md:bottom-[-30px] bottom-[100px] left-12 text-[15vw] font-black text-white/[0.01] pointer-events-none select-none uppercase italic leading-none z-0">
 					Portfolio
 				</div>
 			</div>
