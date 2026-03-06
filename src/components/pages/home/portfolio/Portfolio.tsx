@@ -10,11 +10,39 @@ import {
 import { FiArrowUpRight, FiPlay, FiX } from "react-icons/fi";
 
 const projects = [
-  { id: 1, title: "Kyrgyz Boxing", video: "/box.mp4", link: "https://www.instagram.com/reel/DSCnlsgjYq9/" },
-  { id: 2, title: "navatdubai_", video: "/v2.mp4", link: "https://www.instagram.com/reel/DP1EH5JCLFr/" },
-  { id: 3, title: "Dubai in 𝘿𝙚𝙘𝙚𝙢𝙗𝙚r", video: "/v3.mp4", link: "https://www.instagram.com/reel/DSZrYftktez/" },
-  { id: 4, title: "navatdubai_", video: "/v4.mp4", link: "https://www.instagram.com/reels/DP1EH5JCLFr/" },
-  { id: 5, title: "rpfitness.rolando", video: "/v5.mp4", link: "https://www.instagram.com/reels/DP1EH5JCLFr/" },
+  {
+    id: 1,
+    title: "Kyrgyz Boxing",
+    video: "/box.mp4",
+    link: "https://www.instagram.com/reel/DSCnlsgjYq9/",
+  },
+
+  {
+    id: 2,
+    title: "Gangsta car",
+    video: "/car.mp4",
+    link: "https://www.instagram.com/reel/DUeBbI7CNsZ/",
+  },
+  {
+    id: 3,
+    title: "AI video",
+    video: "/woman.mp4",
+    link: "https://www.instagram.com/reel/DVZRJmUjmCL/",
+  },
+
+  {
+    id: 4,
+    title: "Sony Corporation",
+    video: "/car2.mp4",
+    link: "https://www.instagram.com/reel/DEu2B_VoufD/",
+  },
+
+  {
+    id: 5,
+    title: "rpfitness.rolando",
+    video: "/v5.mp4",
+    link: "https://www.instagram.com/reels/DP1EH5JCLFr/",
+  },
 ];
 
 const ProjectCard = ({ project, isActive, isMobile, onPlay, onClose }: any) => {
@@ -44,7 +72,7 @@ const ProjectCard = ({ project, isActive, isMobile, onPlay, onClose }: any) => {
           src={project.video}
           loop
           playsInline
-          autoPlay={!isMobile} 
+          autoPlay={!isMobile}
           preload={isMobile ? "metadata" : "auto"}
           muted={isMobile ? !isActive : true}
           className={`h-full w-full object-cover transition-all duration-1000 
@@ -127,19 +155,28 @@ const Portfolio = () => {
       ref={targetRef}
       className={`relative bg-[#030303] ${isMobile ? "h-auto py-20" : "h-[400vh]"}`}
     >
-      <div className={`${isMobile ? "relative" : "sticky top-0 h-screen flex flex-col justify-center"} overflow-hidden`}>
+      <div
+        className={`${isMobile ? "relative" : "sticky top-0 h-screen flex flex-col justify-center"} overflow-hidden`}
+      >
         {/* HEADER */}
         <div className="px-6 md:px-12 mb-8 flex justify-between items-end w-full max-w-7xl mx-auto lg:mx-0 z-20">
           <div className="relative">
-            <span className="text-[red] font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">Archive</span>
-            <h2 className="text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none text-white">Selected</h2>
+            <span className="text-[red] font-mono text-[10px] uppercase tracking-[0.4em] mb-2 block">
+              Archive
+            </span>
+            <h2 className="text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none text-white">
+              Selected
+            </h2>
           </div>
           <div className="hidden md:block text-right text-zinc-500 font-mono text-[9px] uppercase tracking-widest leading-loose">
-            {playingId ? "Now Playing" : "Tap to play with sound"} / {projects.length}
+            {playingId ? "Now Playing" : "Tap to play with sound"} /{" "}
+            {projects.length}
           </div>
         </div>
 
-        <div className={`${isMobile ? "overflow-x-auto overflow-y-hidden no-scrollbar" : ""}`}>
+        <div
+          className={`${isMobile ? "overflow-x-auto overflow-y-hidden no-scrollbar" : ""}`}
+        >
           <motion.div
             ref={scrollRef}
             style={{ x: isMobile ? 0 : x }}
